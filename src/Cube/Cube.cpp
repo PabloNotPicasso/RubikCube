@@ -1,4 +1,5 @@
 #include "Cube.hpp"
+
 #include <iostream>
 
 Cube::Cube()
@@ -15,7 +16,7 @@ Cube::Cube()
 
 void Cube::print()
 {
-    for( auto& [side, plane] : m_cube){
+    for (auto& [side, plane] : m_cube) {
         std::cout << "Side [" << getName(side) << "] \n";
         plane.print();
     }

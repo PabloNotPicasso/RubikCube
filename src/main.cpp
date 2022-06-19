@@ -2,7 +2,5 @@
 
 int main()
 {
-    Cube c;
-    c.print();
     return 0;
 }

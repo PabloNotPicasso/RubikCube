@@ -3,10 +3,14 @@
 #include <string>
 #include <unordered_map>
 
-enum class Side
-{
+enum class Side {
     NA = 0,
-    F,L,R,B,U,D,
+    F,
+    L,
+    R,
+    B,
+    U,
+    D,
 };
 
 std::string getName(const Side&);
