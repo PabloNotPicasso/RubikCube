@@ -1,7 +1,12 @@
-set(SRC "main.cpp")
+set(SRC "main.cpp"
+        "Side/Side.cpp"
+        "Color/Color.cpp"
+        "Plane/Plane.cpp"
+        "Cube/Cube.cpp"
+)
 
 set(LIBS
-    # Add libs
+
 )
 
 add_executable(${PROJECT_NAME} ${SRC})

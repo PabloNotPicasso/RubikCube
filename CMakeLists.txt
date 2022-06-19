@@ -5,7 +5,7 @@ include(GNUInstallDirs)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
 
 # put Project Name
-project(projectName)
+project(rubikcube)
 
 include(CMakeModules)
 

@@ -1,7 +1,8 @@
-#include <iostream>
+#include "Cube/Cube.hpp"
 
 int main()
 {
-    std::cout << "Hello, world!" << std::endl;
+    Cube c;
+    c.print();
     return 0;
 }
