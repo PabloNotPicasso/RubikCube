@@ -7,6 +7,42 @@ Plane::Plane(const Color color)
 {
 }
 
+void Plane::transponse()
+{
+    // transpose
+    for( int i = 0; i < DIMENSION; ++i)
+    {
+        for( int j = i; j < DIMENSION; ++j)
+        {
+            std::swap( m_grid[i][j], m_grid[j][i] );
+        }
+    }
+}
+
+void Plane::reflect()
+{
+    // swap
+    for( int i = 0; i < DIMENSION; ++i)
+    {
+        for( int j = 0; j*2 < DIMENSION; ++j)
+        {
+            std::swap( m_grid[i][j], m_grid[i][DIMENSION-1-j] );
+        }
+    }
+}
+
+void Plane::rotate()
+{
+    transponse();
+    reflect();
+}
+
+void Plane::rotateReverse()
+{
+    reflect();
+    transponse();
+}
+
 Color Plane::at(const int& r, const int& col)
 {
     return operator()(r, col);

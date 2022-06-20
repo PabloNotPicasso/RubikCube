@@ -11,9 +11,20 @@ class Cube {
 public:
     Cube();
 
-    void print();
+    Plane& at(const Side&);
+    void rotate(const Side&);
 
+    void print();
+    void printNice();
     friend std::hash<Cube>;
+
+private:
+    void L();
+    void R();
+    void F();
+    void B(){}
+    void D(){}
+    void U(){}
 
 private:
     std::unordered_map<Side, Plane> m_cube;

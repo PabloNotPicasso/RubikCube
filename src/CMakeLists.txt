@@ -3,6 +3,9 @@ set(SRC "main.cpp"
         "Color/Color.cpp"
         "Plane/Plane.cpp"
         "Cube/Cube.cpp"
+        "Cube/Rotation_L.cpp"
+        "Cube/Rotation_R.cpp"
+        "Cube/Rotation_F.cpp"
 )
 
 set(LIBS
