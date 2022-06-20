@@ -22,10 +22,9 @@ private:
     void L();
     void R();
     void F();
-    void B(){}
-    void D(){}
-    void U(){}
-
+    void U();
+    void D();
+    void B();
 private:
     std::unordered_map<Side, Plane> m_cube;
 };
