@@ -7,9 +7,11 @@
 
 #include <array>
 
+namespace Rubik {
+
 class Plane {
 public:
-    Plane(const Color color = Color::NA);
+    Plane(const Color::type color = Color::NA);
 
     void rotate();
     void rotateReverse();
@@ -27,10 +29,11 @@ private:
     void reflect();
     std::array<std::array<Color, DIMENSION>, DIMENSION> m_grid;
 };
+} // namespace Rubik
 
 template<>
-struct std::hash<Plane> {
-    std::size_t operator()(Plane const& plane) const noexcept
+struct std::hash<Rubik::Plane> {
+    std::size_t operator()(Rubik::Plane const& plane) const noexcept
     {
         std::size_t result = 0;
         for (auto row : plane.m_grid) {

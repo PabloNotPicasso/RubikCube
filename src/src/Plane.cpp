@@ -1,8 +1,10 @@
-#include "Plane.hpp"
+#include "Rubik/Plane.hpp"
 
 #include <iostream>
 
-Plane::Plane(const Color color)
+namespace Rubik {
+
+Plane::Plane(const Color::type color)
     : m_grid{{{color, color, color}, {color, color, color}, {color, color, color}}}
 {
 }
@@ -58,8 +60,9 @@ void Plane::print()
 {
     for (auto row : m_grid) {
         for (auto color : row) {
-            std::cout << getName(color);
+            std::cout << Color::getName(color);
         }
         std::cout << "\n";
     }
 }
+} // namespace Rubik

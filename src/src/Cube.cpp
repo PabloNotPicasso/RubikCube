@@ -1,6 +1,8 @@
-#include "Cube.hpp"
+#include "Rubik/Cube.hpp"
 
 #include <iostream>
+
+namespace Rubik {
 
 Cube::Cube()
     : m_cube{
@@ -35,7 +37,7 @@ void Cube::rotate(const Side& side)
 void Cube::print()
 {
     for (auto& [side, plane] : m_cube) {
-        std::cout << "Side [" << getName(side) << "] \n";
+        std::cout << "Side [" << Side::getName(side) << "] \n";
         plane.print();
     }
 }
@@ -43,7 +45,7 @@ void Cube::print()
 void Cube::printNice()
 {
     using namespace std;
-    auto symb = [&](Side side, int row, int col) { return getName(m_cube[side](row, col)); };
+    auto symb = [&](Side side, int row, int col) { return Color::getName(m_cube[side](row, col)); };
 
     // U
     cout << "    " << symb(Side::U, 0, 0) << symb(Side::U, 0, 1) << symb(Side::U, 0, 2) << endl;
@@ -73,3 +75,4 @@ void Cube::printNice()
     cout << "    " << symb(Side::D, 1, 0) << symb(Side::D, 1, 1) << symb(Side::D, 1, 2) << endl;
     cout << "    " << symb(Side::D, 2, 0) << symb(Side::D, 2, 1) << symb(Side::D, 2, 2) << endl;
 }
+} // namespace Rubik

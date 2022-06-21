@@ -1,4 +1,6 @@
-#include "Cube.hpp"
+#include "Rubik/Cube.hpp"
+
+namespace Rubik {
 
 void Cube::U()
 {
@@ -33,3 +35,4 @@ void Cube::U()
     L_side(0, 1) = was_F_side(0, 1);
     L_side(0, 2) = was_F_side(0, 2);
 }
+} // namespace Rubik

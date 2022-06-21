@@ -1,6 +1,8 @@
-#include "Color.hpp"
+#include "Rubik/Color.hpp"
 
-static const std::unordered_map<Color, std::string> fullColorName{
+namespace Rubik {
+
+static const std::unordered_map<Color::type, std::string> fullColorName{
     {Color::NA, "NA"},
     {Color::White, "White"},
     {Color::Red, "Red"},
@@ -10,7 +12,7 @@ static const std::unordered_map<Color, std::string> fullColorName{
     {Color::Yellow, "Yellow"},
 };
 
-static const std::unordered_map<Color, std::string> colorName{
+static const std::unordered_map<Color::type, std::string> colorName{
     {Color::NA, "N"},
     {Color::White, "W"},
     {Color::Red, "R"},
@@ -20,7 +22,19 @@ static const std::unordered_map<Color, std::string> colorName{
     {Color::Yellow, "Y"},
 };
 
-std::string getName(const Color& color)
+std::string Color::getName(const Color::type& color)
 {
     return colorName.at(color);
 }
+
+Color::Color(const type& color)
+    : m_color(color)
+{
+}
+
+Color::operator type()
+{
+    return m_color;
+}
+
+} // namespace Rubik
