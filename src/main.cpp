@@ -1,4 +1,4 @@
-#include "Cube/Cube.hpp"
+#include "Cube.hpp"
 
 int main()
 {

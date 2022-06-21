@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Plane/Plane.hpp"
-#include "Side/Side.hpp"
+#include "Plane.hpp"
+#include "Side.hpp"
 
 #include <boost/functional/hash.hpp>
 
@@ -14,6 +14,7 @@ public:
     Plane& at(const Side&);
     void rotate(const Side&);
 
+    // Helper
     void print();
     void printNice();
     friend std::hash<Cube>;
@@ -25,8 +26,10 @@ private:
     void U();
     void D();
     void B();
+
 private:
     std::unordered_map<Side, Plane> m_cube;
+    std::unordered_map<Side, std::function<void()>> m_rotationFn;
 };
 
 // custom specialization of std::hash can be injected in namespace std

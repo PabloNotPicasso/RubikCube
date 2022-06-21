@@ -10,11 +10,9 @@ Plane::Plane(const Color color)
 void Plane::transponse()
 {
     // transpose
-    for( int i = 0; i < DIMENSION; ++i)
-    {
-        for( int j = i; j < DIMENSION; ++j)
-        {
-            std::swap( m_grid[i][j], m_grid[j][i] );
+    for (int i = 0; i < DIMENSION; ++i) {
+        for (int j = i; j < DIMENSION; ++j) {
+            std::swap(m_grid[i][j], m_grid[j][i]);
         }
     }
 }
@@ -22,11 +20,9 @@ void Plane::transponse()
 void Plane::reflect()
 {
     // swap
-    for( int i = 0; i < DIMENSION; ++i)
-    {
-        for( int j = 0; j*2 < DIMENSION; ++j)
-        {
-            std::swap( m_grid[i][j], m_grid[i][DIMENSION-1-j] );
+    for (int i = 0; i < DIMENSION; ++i) {
+        for (int j = 0; j * 2 < DIMENSION; ++j) {
+            std::swap(m_grid[i][j], m_grid[i][DIMENSION - 1 - j]);
         }
     }
 }

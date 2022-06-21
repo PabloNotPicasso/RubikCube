@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Color/Color.hpp"
-#include "Common/Helper.hpp"
+#include "Color.hpp"
+#include "Helper.hpp"
 
 #include <boost/functional/hash.hpp>
 

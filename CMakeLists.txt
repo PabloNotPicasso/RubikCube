@@ -4,10 +4,12 @@ include(GNUInstallDirs)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
 
-# put Project Name
-project(rubikcube)
+project(rubiklib VERSION 1.0.1 DESCRIPTION "rubik solver lib")
 
-include(CMakeModules)
+include(AddGoogleTest)
+include(CodeFormatting)
+include(Macro)
+include(SetUp)
 
-include_directories(src)
+include_directories(src/include)
 add_subdirectory(src)
