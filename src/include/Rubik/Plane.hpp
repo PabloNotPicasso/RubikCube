@@ -18,6 +18,7 @@ public:
 
     Color& operator()(const int& row, const int& col);
     const Color& operator()(const int& row, const int& col) const;
+    bool operator==(const Plane&) const;
 
     void print() const;
     friend std::hash<Plane>;

@@ -11,6 +11,7 @@ set( SRC
     "src/Rotation_R.cpp"
     "src/Rotation_U.cpp"
     "src/Side.cpp"
+    "src/Solver.cpp"
 )
 set( HEADERS
     "include/Rubik/Color.hpp"
@@ -19,6 +20,7 @@ set( HEADERS
     "include/Rubik/Side.hpp"
     "include/Rubik/Helper.hpp"
     "include/Rubik/RubikApi.hpp"
+    "include/Rubik/Solver.hpp"
 )
 
 add_library(${PROJECT_NAME} SHARED ${SRC})

@@ -1,17 +1,30 @@
 #include "Rubik/Cube.hpp"
 
+#include <iostream>
+
 namespace Rubik {
 
-void Cube::F()
+static void _rotate(Cube::CubeGrid& cube);
+
+void Cube::F(bool reverse)
+{
+    if (reverse) {
+        _rotate(m_cubeGrid);
+        _rotate(m_cubeGrid);
+    }
+    _rotate(m_cubeGrid);
+}
+
+void _rotate(Cube::CubeGrid& grid)
 {
     // L Side rotation
-    Plane& F_side = m_cube[Side::F];
+    Plane& F_side = grid[Side::F];
     F_side.rotate();
 
-    Plane& U_side = m_cube[Side::U];
-    Plane& R_side = m_cube[Side::R];
-    Plane& D_side = m_cube[Side::D];
-    Plane& L_side = m_cube[Side::L];
+    Plane& U_side = grid[Side::U];
+    Plane& R_side = grid[Side::R];
+    Plane& D_side = grid[Side::D];
+    Plane& L_side = grid[Side::L];
 
     Plane was_U_side = U_side;
     Plane was_R_side = R_side;

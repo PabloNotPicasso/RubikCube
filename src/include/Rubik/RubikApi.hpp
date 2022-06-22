@@ -1,4 +1,7 @@
 #include "Color.hpp"
 #include "Cube.hpp"
+#include "Helper.hpp"
 #include "Plane.hpp"
+#include "Rotation.hpp"
 #include "Side.hpp"
+#include "Solver.hpp"

@@ -5,7 +5,7 @@
 namespace Rubik {
 
 Cube::Cube()
-    : m_cube{
+    : m_cubeGrid{
         {Side::B, Color::Orange},
         {Side::D, Color::White},
         {Side::F, Color::Red},
@@ -14,43 +14,73 @@ Cube::Cube()
         {Side::U, Color::Yellow},
     }
     , m_rotationFn{
-        {Side::B, std::bind(&Cube::B, this)},
-        {Side::D, std::bind(&Cube::D, this)},
-        {Side::F, std::bind(&Cube::F, this)},
-        {Side::L, std::bind(&Cube::L, this)},
-        {Side::R, std::bind(&Cube::R, this)},
-        {Side::U, std::bind(&Cube::U, this)},
+        {Rotation::B, std::bind(&Cube::B, this, false)},{Rotation::Br, std::bind(&Cube::B, this, true)},
+        {Rotation::D, std::bind(&Cube::D, this, false)},{Rotation::Dr, std::bind(&Cube::D, this, true)},
+        {Rotation::F, std::bind(&Cube::F, this, false)},{Rotation::Fr, std::bind(&Cube::F, this, true)},
+        {Rotation::L, std::bind(&Cube::L, this, false)},{Rotation::Lr, std::bind(&Cube::L, this, true)},
+        {Rotation::R, std::bind(&Cube::R, this, false)},{Rotation::Rr, std::bind(&Cube::R, this, true)},
+        {Rotation::U, std::bind(&Cube::U, this, false)},{Rotation::Ur, std::bind(&Cube::U, this, true)},
     }
 {
+}
+
+Cube::Cube(const Cube& copy)
+    : m_cubeGrid(copy.m_cubeGrid)
+    , m_rotationFn{
+          {Rotation::B, std::bind(&Cube::B, this, false)},
+          {Rotation::Br, std::bind(&Cube::B, this, true)},
+          {Rotation::D, std::bind(&Cube::D, this, false)},
+          {Rotation::Dr, std::bind(&Cube::D, this, true)},
+          {Rotation::F, std::bind(&Cube::F, this, false)},
+          {Rotation::Fr, std::bind(&Cube::F, this, true)},
+          {Rotation::L, std::bind(&Cube::L, this, false)},
+          {Rotation::Lr, std::bind(&Cube::L, this, true)},
+          {Rotation::R, std::bind(&Cube::R, this, false)},
+          {Rotation::Rr, std::bind(&Cube::R, this, true)},
+          {Rotation::U, std::bind(&Cube::U, this, false)},
+          {Rotation::Ur, std::bind(&Cube::U, this, true)},
+      }
+{
+}
+
+Cube& Cube::operator=(const Cube& assign)
+{
+    this->m_cubeGrid = assign.m_cubeGrid;
+    return *this;
 }
 
 Plane& Cube::operator[](const Side& side)
 {
-    return m_cube[side];
+    return m_cubeGrid[side];
 }
 const Plane& Cube::operator[](const Side& side) const
 {
-    return m_cube.at(side);
+    return m_cubeGrid.at(side);
 }
 
-void Cube::rotate(const Side& side)
+void Cube::rotate(const Rotation& rotation)
 {
-    std::invoke(m_rotationFn[side]);
+    m_rotationFn[rotation]();
+}
+void Cube::reverseRotate(const Rotation& rotation)
+{
+    m_rotationFn[ReverseRotationMap.at(rotation)]();
+}
+
+bool Cube::operator==(const Cube& otherCube) const
+{
+    bool isEq = true;
+    for (const Side& side : Side::SideList) {
+        isEq &= otherCube[side] == (*this)[side];
+    }
+    return isEq;
 }
 
 void Cube::print() const
 {
-    for (auto& [side, plane] : m_cube) {
-        std::cout << "Side [" << Side::getName(side) << "] \n";
-        plane.print();
-    }
-}
-
-void Cube::printNice() const
-{
     using namespace std;
     auto symb = [&](const Side& side, const int& row, const int& col) {
-        return Color::getName(m_cube.at(side)(row, col));
+        return Color::getName(m_cubeGrid.at(side)(row, col));
     };
 
     // U

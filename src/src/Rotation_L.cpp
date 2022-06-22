@@ -2,16 +2,27 @@
 
 namespace Rubik {
 
-void Cube::L()
+static void _rotate(Cube::CubeGrid& cube);
+
+void Cube::L(bool reverse)
+{
+    if (reverse) {
+        _rotate(m_cubeGrid);
+        _rotate(m_cubeGrid);
+    }
+    _rotate(m_cubeGrid);
+}
+
+void _rotate(Cube::CubeGrid& grid)
 {
     // L Side rotation
-    Plane& L_side = m_cube[Side::L];
+    Plane& L_side = grid[Side::L];
     L_side.rotateReverse();
 
-    Plane& U_side = m_cube[Side::U];
-    Plane& F_side = m_cube[Side::F];
-    Plane& D_side = m_cube[Side::D];
-    Plane& B_side = m_cube[Side::B];
+    Plane& U_side = grid[Side::U];
+    Plane& F_side = grid[Side::F];
+    Plane& D_side = grid[Side::D];
+    Plane& B_side = grid[Side::B];
 
     Plane was_U_side = U_side;
     Plane was_F_side = F_side;

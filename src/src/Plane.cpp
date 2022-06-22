@@ -51,6 +51,11 @@ const Color& Plane::operator()(const int& row, const int& col) const
     return m_grid[row][col];
 }
 
+bool Plane::operator==(const Plane& plane) const
+{
+    return m_grid == plane.m_grid;
+}
+
 void Plane::print() const
 {
     for (auto row : m_grid) {
