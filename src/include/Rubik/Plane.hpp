@@ -11,17 +11,15 @@ namespace Rubik {
 
 class Plane {
 public:
-    Plane(const Color::type color = Color::NA);
+    Plane(const Color::Type color = Color::NA);
 
     void rotate();
     void rotateReverse();
 
-    Color at(const int& r, const int& col);
-
     Color& operator()(const int& row, const int& col);
     const Color& operator()(const int& row, const int& col) const;
 
-    void print();
+    void print() const;
     friend std::hash<Plane>;
 
 private:
@@ -33,7 +31,7 @@ private:
 
 template<>
 struct std::hash<Rubik::Plane> {
-    std::size_t operator()(Rubik::Plane const& plane) const noexcept
+    std::size_t operator()(const Rubik::Plane& plane) const noexcept
     {
         std::size_t result = 0;
         for (auto row : plane.m_grid) {

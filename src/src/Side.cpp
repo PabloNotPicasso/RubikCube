@@ -17,12 +17,17 @@ std::string Side::getName(const Side& side)
     return sideName.at(side);
 }
 
-Side::Side(const type& side)
+Side::Side(const Type& side)
     : m_type(side)
 {
 }
 
-Side::operator type() const
+const Side::Type& Side::type() const
+{
+    return m_type;
+}
+
+Side::operator Type() const
 {
     return m_type;
 }

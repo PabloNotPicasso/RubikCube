@@ -24,9 +24,13 @@ Cube::Cube()
 {
 }
 
-Plane& Cube::at(const Side& side)
+Plane& Cube::operator[](const Side& side)
 {
     return m_cube[side];
+}
+const Plane& Cube::operator[](const Side& side) const
+{
+    return m_cube.at(side);
 }
 
 void Cube::rotate(const Side& side)
@@ -34,7 +38,7 @@ void Cube::rotate(const Side& side)
     std::invoke(m_rotationFn[side]);
 }
 
-void Cube::print()
+void Cube::print() const
 {
     for (auto& [side, plane] : m_cube) {
         std::cout << "Side [" << Side::getName(side) << "] \n";
@@ -42,10 +46,12 @@ void Cube::print()
     }
 }
 
-void Cube::printNice()
+void Cube::printNice() const
 {
     using namespace std;
-    auto symb = [&](Side side, int row, int col) { return Color::getName(m_cube[side](row, col)); };
+    auto symb = [&](const Side& side, const int& row, const int& col) {
+        return Color::getName(m_cube.at(side)(row, col));
+    };
 
     // U
     cout << "    " << symb(Side::U, 0, 0) << symb(Side::U, 0, 1) << symb(Side::U, 0, 2) << endl;

@@ -13,12 +13,15 @@ class Cube {
 public:
     Cube();
 
-    Plane& at(const Side&);
     void rotate(const Side&);
 
+    const Plane& operator[](const Side&) const;
+    Plane& operator[](const Side&);
+
     // Helper
-    void print();
-    void printNice();
+    void print() const;
+    void printNice() const;
+
     friend std::hash<Cube>;
 
 private:
@@ -37,7 +40,7 @@ private:
 // custom specialization of std::hash can be injected in namespace std
 template<>
 struct std::hash<Rubik::Cube> {
-    std::size_t operator()(Rubik::Cube const& cube) const noexcept
+    std::size_t operator()(const Rubik::Cube& cube) const noexcept
     {
         std::hash<Rubik::Plane> hasher;
         std::size_t result = 0;

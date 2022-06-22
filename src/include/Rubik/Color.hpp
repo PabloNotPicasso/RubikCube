@@ -7,7 +7,7 @@ namespace Rubik {
 
 class Color {
 public:
-    enum type {
+    enum Type {
         NA = 0,
         White,
         Red,
@@ -17,14 +17,24 @@ public:
         Yellow,
     };
 
-    Color(const type& color = type::NA);
+    Color(const Type& color = Type::NA);
 
-    operator type();
+    const Type& type() const;
+    operator Type() const;
 
-    static std::string getName(const Color::type&);
+    static std::string getName(const Color&);
 
 private:
-    type m_color;
+    Type m_color;
 };
 
 } // namespace Rubik
+
+// custom specialization of std::hash can be injected in namespace std
+template<>
+struct std::hash<Rubik::Color> {
+    std::size_t operator()(const Rubik::Color& color) const noexcept
+    {
+        return std::hash<Rubik::Color::Type>{}(Rubik::Color::Type(color));
+    }
+};

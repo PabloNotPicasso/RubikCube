@@ -7,7 +7,7 @@ namespace Rubik {
 
 class Side {
 public:
-    enum type {
+    enum Type {
         NA = 0,
         F,
         L,
@@ -16,13 +16,16 @@ public:
         U,
         D,
     };
+
+    Side(const Type& side);
+
+    const Type& type() const;
+    operator Type() const;
+
     static std::string getName(const Side&);
 
-    Side(const type& side);
-    operator type() const;
-
 private:
-    type m_type;
+    Type m_type;
 };
 
 } // namespace Rubik
@@ -32,6 +35,6 @@ template<>
 struct std::hash<Rubik::Side> {
     std::size_t operator()(Rubik::Side const& side) const noexcept
     {
-        return std::hash<Rubik::Side::type>{}(Rubik::Side::type(side));
+        return std::hash<Rubik::Side::Type>{}(Rubik::Side::Type(side));
     }
 };

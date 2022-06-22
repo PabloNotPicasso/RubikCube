@@ -4,7 +4,7 @@
 
 namespace Rubik {
 
-Plane::Plane(const Color::type color)
+Plane::Plane(const Color::Type color)
     : m_grid{{{color, color, color}, {color, color, color}, {color, color, color}}}
 {
 }
@@ -41,11 +41,6 @@ void Plane::rotateReverse()
     transponse();
 }
 
-Color Plane::at(const int& r, const int& col)
-{
-    return operator()(r, col);
-}
-
 Color& Plane::operator()(const int& row, const int& col)
 {
     return m_grid[row][col];
@@ -56,7 +51,7 @@ const Color& Plane::operator()(const int& row, const int& col) const
     return m_grid[row][col];
 }
 
-void Plane::print()
+void Plane::print() const
 {
     for (auto row : m_grid) {
         for (auto color : row) {
