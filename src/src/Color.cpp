@@ -22,10 +22,14 @@ static const std::unordered_map<Color::Type, std::string> colorName{
     {Color::Yellow, "Y"},
 };
 
-std::string Color::getName(const Color& color)
-{
-    return colorName.at(color);
-}
+const std::vector<Color> Color::ColorList{
+    Color::White,
+    Color::Red,
+    Color::Blue,
+    Color::Orange,
+    Color::Green,
+    Color::Yellow,
+};
 
 Color::Color(const Type& color)
     : m_color(color)
@@ -40,6 +44,11 @@ const Color::Type& Color::type() const
 Color::operator Color::Type() const
 {
     return m_color;
+}
+
+std::string Color::getName(const Color& color)
+{
+    return colorName.at(color);
 }
 
 } // namespace Rubik

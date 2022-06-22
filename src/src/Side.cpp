@@ -12,6 +12,15 @@ static const std::unordered_map<Side, std::string> sideName{
     {Side::D, "D"},
 };
 
+const std::vector<Side> Side::SideList{
+    Side::F,
+    Side::L,
+    Side::R,
+    Side::B,
+    Side::U,
+    Side::D,
+};
+
 std::string Side::getName(const Side& side)
 {
     return sideName.at(side);

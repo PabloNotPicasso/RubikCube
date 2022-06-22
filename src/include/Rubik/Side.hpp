@@ -2,6 +2,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 namespace Rubik {
 
@@ -23,6 +24,7 @@ public:
     operator Type() const;
 
     static std::string getName(const Side&);
+    static const std::vector<Side> SideList;
 
 private:
     Type m_type;
